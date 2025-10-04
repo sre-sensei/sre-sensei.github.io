@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SRE Sensei - Zero to Cloud Hero</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0a0a0f;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Hero Section - Full viewport */
+      .hero {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #0a0a0f 0%,
+          #1a1a2e 50%,
+          #0f0f23 100%
+        );
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 2rem 0;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(0, 255, 136, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(138, 43, 226, 0.15) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .grid-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.5;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .hero-left {
+        animation: slideInLeft 0.8s ease-out;
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #00ff88;
+        margin-bottom: 1.5rem;
+      }
+
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background: #00ff88;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2);
+        }
+      }
+
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .reassurance {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .reassurance-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .check-icon {
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, #00ff88, #00d4ff);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .check-icon::after {
+        content: "✓";
+        color: #000;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .reassurance-text {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #fff;
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #00ff88, #00d4ff);
+        color: #000;
+        padding: 1.2rem 2.5rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
+      }
+
+      .webinar-date {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .hero-right {
+        position: relative;
+        animation: slideInRight 0.8s ease-out;
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .mentors-showcase {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 2rem;
+        backdrop-filter: blur(20px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mentors-showcase::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 255, 136, 0.05) 0%,
+          transparent 70%
+        );
+        animation: rotate 10s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .mentors-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .mentors-header h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #00ff88, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .mentors-header p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .mentors-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .mentor-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .mentor-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(0, 255, 136, 0.4);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .mentor-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 1rem;
+        border: 3px solid rgba(0, 255, 136, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .mentor-card:hover .mentor-photo {
+        border-color: #00ff88;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      }
+
+      .mentor-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+
+      .mentor-role {
+        font-size: 0.85rem;
+        color: #00ff88;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+
+      .mentor-company {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 0.8rem;
+      }
+
+      .ex-aws {
+        display: inline-block;
+        background: rgba(255, 153, 0, 0.1);
+        color: #ff9900;
+        padding: 0.3rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        border: 1px solid rgba(255, 153, 0, 0.3);
+      }
+
+      .stats-bar {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 1;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #00ff88, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.3rem;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Footer */
+      .footer {
+        background: rgba(255, 255, 255, 0.02);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .footer-email {
+        color: #00ff88;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer-email:hover {
+        opacity: 0.7;
+      }
+
+      .copyright {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+
+        .mentors-showcase {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .cta-group {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .mentors-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-bar {
+          gap: 2rem;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .reassurance {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .container {
+          padding: 0 1rem;
+        }
+
+        .btn-primary {
+          padding: 1rem 2rem;
+          font-size: 1rem;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="grid-bg"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="badge">
+              <span class="pulse-dot"></span>
+              FREE Webinar • October 11, 2025 @ 11AM IST
+            </div>
+
+            <h1>Zero to Cloud Hero</h1>
+
+            <p class="hero-subtitle">
+              Break into Cloud & DevOps careers with industry veterans from AWS.
+              Get job-ready with hands-on mentorship.
+            </p>
+
+            <div class="reassurance">
+              <div class="reassurance-item">
+                <div class="check-icon"></div>
+                <span class="reassurance-text"
+                  >No Experience? Perfect Starting Point</span
+                >
+              </div>
+              <div class="reassurance-item">
+                <div class="check-icon"></div>
+                <span class="reassurance-text">0 Prerequisites Required</span>
+              </div>
+            </div>
+
+            <div class="cta-group">
+              <a href="https://forms.gle/DSi3ZNtUhNBLvPtWA" target="_blank" class="btn-primary">Reserve Your Free Seat to the Webinar</a>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="mentors-showcase">
+              <div class="mentors-header">
+                <h3>Learn from Ex-AWS Experts</h3>
+              </div>
+
+              <div class="mentors-grid">
+                <div class="mentor-card">
+                  <img
+                    src="mentors/mani.jpeg"
+                    alt="Mani"
+                    class="mentor-photo"
+                  />
+                  <div class="mentor-name">Mani</div>
+                  <div class="mentor-role">SRE</div>
+                  <div class="mentor-company">Google</div>
+                  <span class="ex-aws">Ex-AWS</span>
+                </div>
+
+                <div class="mentor-card">
+                  <img
+                    src="mentors/Nigel.jpeg"
+                    alt="Nigel"
+                    class="mentor-photo"
+                  />
+                  <div class="mentor-name">Nigel</div>
+                  <div class="mentor-role">Platform Engineer</div>
+                  <div class="mentor-company">Okta</div>
+                  <span class="ex-aws">Ex-AWS</span>
+                </div>
+
+                <div class="mentor-card">
+                  <img
+                    src="mentors/shaikh.jpeg"
+                    alt="Shaikh"
+                    class="mentor-photo"
+                  />
+                  <div class="mentor-name">Shaikh</div>
+                  <div class="mentor-role">Staff SRE</div>
+                  <div class="mentor-company">Cision</div>
+                  <span class="ex-aws">Ex-AWS</span>
+                </div>
+
+                <div class="mentor-card">
+                  <img
+                    src="mentors/murali.jpg"
+                    alt="Murali"
+                    class="mentor-photo"
+                  />
+                  <div class="mentor-name">Murali</div>
+                  <div class="mentor-role">Sr. DevOps Engineer</div>
+                  <div class="mentor-company">G-P</div>
+                  <span class="ex-aws">Ex-AWS</span>
+                </div>
+              </div>
+
+              <div class="stats-bar">
+                <div class="stat">
+                  <div class="stat-number">100%</div>
+                  <div class="stat-label">Ex-AWS</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">12</div>
+                  <div class="stat-label">Weeks</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-number">∞</div>
+                  <div class="stat-label">Growth</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="copyright">
+            &copy; 2025 SRE Sensei. All rights reserved.
+          </div>
+          <div>
+            Contact:
+            <a href="mailto:sresensei@gmail.com" class="footer-email"
+              >sresensei@gmail.com</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
